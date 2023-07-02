@@ -1,5 +1,11 @@
+"use client"
+
+import NavBar from '@/components/NavBar'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Footer from '@/components/Footer'
+import {useEffect} from "react"
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,9 +19,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  useEffect(() => {
+    import('preline')
+  }, [])
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NavBar />
+        <main>
+          {children}
+        </main>
+        <Footer />
+        <script src="./node_modules/preline/dist/preline.js"></script>
+      </body>
     </html>
   )
 }
